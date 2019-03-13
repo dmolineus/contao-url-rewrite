@@ -120,8 +120,11 @@ $GLOBALS['TL_DCA']['tl_url_rewrite'] = [
             'sorting' => true,
             'inputType' => 'text',
             'flag' => 1,
-            'eval' => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
             'sql' => ['type' => 'string', 'length' => 255, 'default' => ''],
+            'save_callback' => [
+                ['terminal42_url_rewrite.listener.rewrite_container', 'onNameSaveCallback'],
+            ],
         ],
         'type' => [
             'label' => &$GLOBALS['TL_LANG']['tl_url_rewrite']['type'],
